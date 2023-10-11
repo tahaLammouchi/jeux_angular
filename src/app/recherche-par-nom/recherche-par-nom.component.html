@@ -1,0 +1,29 @@
+<div class="container">
+    <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+        <label>Nom Jeu Vidéo</label>
+        <input  #searchTerm (keyup)="onKeyUp(searchTerm.value)" class="form-control" >
+        </div>
+        </form>
+        
+        
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <table class="table table-striped">
+    <tr> <th>Id</th><th>Nom</th> <th>Prix</th><th>Genre</th> <th>Date Création</th> </tr>
+    <tbody *ngFor="let videogame of videogames ">
+    <tr >
+    <td>{{videogame.idVideogame}}</td>
+    <td>{{videogame.nomVideogame}}</td>
+    <td>{{videogame.prixVideogame}}</td>
+    <td>{{videogame.genre.nomGen}}</td>
+    <td>{{videogame.dateCreation | date:'dd/MM/yyyy'}}</td>
+    <td><a *ngIf="authService.isAdmin()" class="btn btn-success" [routerLink]="['/updateVideogame',videogame.idVideogame]">Modifier</a></td>
+    <td><a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerVideogame(videogame)">Supprimer</a></td> 
+    </tr>
+    </tbody>
+    
+    </table>
+    </div>
+    </div>
+    </div>
